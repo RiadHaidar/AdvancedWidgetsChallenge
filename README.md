@@ -32,7 +32,7 @@ Class FirstChallenge
 
     ## Demo Video
 
-![Demo Video](./materials/first_challenge.mov)
+![Demo Video](./materials/first_challenge.gif)
 
 
 
@@ -68,4 +68,4 @@ Now inside it we have 4 conditions checked in this order:
 4. If none of these conditions are met, we show the default shape.
 
 
-![Demo Video](./materials/second_challenge.mov)
+![Demo Video](./materials/second_challenge.gif)
