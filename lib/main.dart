@@ -26,7 +26,7 @@ class FirstChallenge extends StatefulWidget {
 
 class _FirstChallenge extends State<FirstChallenge> {
   List<String> items = ['Review clean arch',
-   'complete flutter assignment', 'practice widget catalog']; // Your data source
+   'complete flutter assignment', 'practice widget catalog']; 
 
   @override
   Widget build(BuildContext context) {
@@ -34,68 +34,43 @@ class _FirstChallenge extends State<FirstChallenge> {
       appBar: AppBar(title: Text('Task Management')),
       body: ReorderableListView(
         children: items.asMap().entries.map((entry) {
+        int index = entry.key;
+          String item = entry.value;
           return Dismissible(
+            background: Container(
+              color: Colors.red,
+              child: Icon(Icons.delete_outline_outlined,
+              color: Colors.white,),
+            ),
             key: ValueKey(entry.value),
-            onDismissed: (direction) {
-              showDialog<void>(
+            confirmDismiss: (direction) async {
+              bool? shouldDelete = await showDialog<bool>(
                 context: context,
-                barrierDismissible: false, // user must tap button!
+                barrierDismissible: false,
                 builder: (BuildContext context) {
-                  int removedItem = entry.key;
-                  String removedTaskTitle = items[entry.key];
-                  //items.removeAt(index);
                   return AlertDialog(
                     title: const Text('Confirm Delete'),
                     content: SingleChildScrollView(
                       child: ListBody(
                         children: <Widget>[
-                          Text('Delete task number $removedTaskTitle',
-                                                        style: TextStyle(fontWeight: FontWeight.bold ),
-
+                          Text(
+                            'Delete task: $item',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Delete'),
+                        child: const Text('Cancel'),
                         onPressed: () {
-                          setState(() {
-                            items.removeAt(removedItem);
-                          });
-
-                          Navigator.of(context).pop();
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(' task $removedTaskTitle deleted',
-                              style: TextStyle(fontWeight: FontWeight.bold ),
-                              ),
-                              action: SnackBarAction(
-                                label: 'Undo',
-                                onPressed: () {
-                                  setState(
-                                    () => items.insert(
-                                      removedItem,
-                                      removedTaskTitle,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          );
+                          Navigator.of(context).pop(false); 
                         },
                       ),
                       TextButton(
-                        child: const Text('Cancel'),
+                        child: const Text('Delete'),
                         onPressed: () {
-                          setState(
-                                    () => items.insert(
-                                      removedItem,
-                                      removedTaskTitle,
-                                    ),
-                                  );
-                          Navigator.of(context).pop(); // Close the dialog
+                          Navigator.of(context).pop(true); 
                         },
                       ),
                     ],
@@ -103,9 +78,30 @@ class _FirstChallenge extends State<FirstChallenge> {
                 },
               );
 
-        
+              if (shouldDelete == true) {
+                setState(() {
+                  items.removeAt(index);
+                });
+                
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Task "$item" deleted', 
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () {
+                        setState(() {
+                          items.insert(index, item);
+                        });
+                      },
+                    ),
+                  ),
+                );
+              }
+              
+              return shouldDelete; 
             },
-
+      
             child: Card(
               key: ValueKey(entry.value),
               elevation: 4,
