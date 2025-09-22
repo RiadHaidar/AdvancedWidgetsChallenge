@@ -88,6 +88,10 @@ Now inside it we have 4 conditions checked in this order:
 
 
 
+https://github.com/user-attachments/assets/8c91ba2f-8ac9-483c-a934-56e45d485624
+
+
+
 
 
 
@@ -113,6 +117,10 @@ Now inside it we have 4 conditions checked in this order:
 
 
 
+https://github.com/user-attachments/assets/8c963be6-5c5d-4645-b217-7e43c18ce882
+
+
+
 
 
 [View Code](./lib/third_challenge.dart#L104-L193)
@@ -132,6 +140,10 @@ Now inside it we have 4 conditions checked in this order:
   <br>
   <em>Third Challenge - Loader Simple</em>
 </div>
+
+
+
+https://github.com/user-attachments/assets/736f318f-790f-4700-a413-73e63bd3e223
 
 
 
