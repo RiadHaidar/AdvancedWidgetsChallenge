@@ -32,8 +32,11 @@ Class FirstChallenge
 
     ## Demo Video
 
-![Demo Video](./materials/first_challenge.gif)
-
+<div align="center">
+  <img src="./materials/first_challenge.gif" width="350" alt="First Challenge Demo">
+  <br>
+  <em>First Challenge - ReorderableList with Dismissible</em>
+</div>
 
 
 
@@ -67,5 +70,8 @@ Now inside it we have 4 conditions checked in this order:
 3. If the correct value is hovered, we show the preview shape.
 4. If none of these conditions are met, we show the default shape.
 
-
-![Demo Video](./materials/second_challenge.gif)
+<div align="center">
+  <img src="./materials/second_challenge.gif" width="350" alt="Second Challenge Demo">
+  <br>
+  <em>Second Challenge - Drag and Drop</em>
+</div>
