@@ -34,7 +34,9 @@ Basic Flutter project with a couple of advanced widgets.
 ## Demo Video
 
 <div align="center">
-  <img src="./materials/first_challenge.mp4" width="350" alt="First Challenge Demo">
+  <a href="./materials/first_challenge.mp4" title="First Challenge Demo">
+    <img src="https://img.shields.io/badge/Watch-First%20Challenge%20Demo-blue?style=for-the-badge&logo=github" alt="Watch First Challenge Demo">
+  </a>
   <br>
   <em>First Challenge - ReorderableList with Dismissible</em>
 </div>
@@ -72,7 +74,9 @@ Now inside it we have 4 conditions checked in this order:
 4. If none of these conditions are met, we show the default shape.
 
 <div align="center">
-  <img src="./materials/second_challenge.mp4" width="350" alt="Second Challenge Demo">
+  <a href="./materials/second_challenge.mp4" title="Second Challenge Demo">
+    <img src="https://img.shields.io/badge/Watch-Second%20Challenge%20Demo-blue?style=for-the-badge&logo=github" alt="Watch Second Challenge Demo">
+  </a>
   <br>
   <em>Second Challenge - Drag and Drop</em>
 </div>
@@ -96,7 +100,9 @@ Now inside it we have 4 conditions checked in this order:
 
 
 <div align="center">
-  <img src="./materials/third_challenge_actual.mp4" width="350" alt="Third Challenge Demo">
+  <a href="./materials/third_challenge_actual.mp4" title="Third Challenge Demo">
+    <img src="https://img.shields.io/badge/Watch-Third%20Challenge%20Demo-blue?style=for-the-badge&logo=github" alt="Watch Third Challenge Demo">
+  </a>
   <br>
   <em>Third Challenge - Loader</em>
 </div>
@@ -116,7 +122,9 @@ Now inside it we have 4 conditions checked in this order:
 ## Demo Video For the Simple Version
 
 <div align="center">
-  <img src="./materials/third_challenge_simple.mp4" width="350" alt="Third Challenge Simple Demo">
+  <a href="./materials/third_challenge_simple.mp4" title="Third Challenge Simple Demo">
+    <img src="https://img.shields.io/badge/Watch-Third%20Challenge%20Simple%20Demo-blue?style=for-the-badge&logo=github" alt="Watch Third Challenge Simple Demo">
+  </a>
   <br>
   <em>Third Challenge - Loader Simple</em>
 </div>
