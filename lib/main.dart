@@ -25,133 +25,117 @@ class FirstChallenge extends StatefulWidget {
 }
 
 class _FirstChallenge extends State<FirstChallenge> {
- 
- 
+  List<String> items = ['Review clean arch',
+   'complete flutter assignment', 'practice widget catalog']; // Your data source
+
   @override
   Widget build(BuildContext context) {
-    List<int> items = List<int>.generate(5, (int index) => index);
-
-    SnackBar snackBar = SnackBar(
-      content: Text('Yay! A SnackBar!'),
-      action: SnackBarAction(
-        label: 'Undo',
-        onPressed: () {
-          
-
-          print('undo logic');
-        },
-      ),
-    );  
-
-
     return Scaffold(
       appBar: AppBar(title: Text('Task Management')),
       body: ReorderableListView(
-        children: items.map((index) {
+        children: items.asMap().entries.map((entry) {
           return Dismissible(
-            background: Container(
-              color: Colors.red,
-              child: Icon(Icons.delete_outline, color: Colors.white),
-            ),
-            onDismissed: (direction) async {
-              if (direction == DismissDirection.startToEnd) {
-                showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      int removedItem = items[index];
-                //items.removeAt(index);
-      return AlertDialog(
-        title: const Text('Confirm Delete'),
-        content:  SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('Delete task number $removedItem'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Delete'),
-            onPressed: () {
-              setState(() {
-                items.removeAt(removedItem);
-              });
-                           Navigator.of(context).pop();
+            key: ValueKey(entry.value),
+            onDismissed: (direction) {
+              showDialog<void>(
+                context: context,
+                barrierDismissible: false, // user must tap button!
+                builder: (BuildContext context) {
+                  int removedItem = entry.key;
+                  String removedTaskTitle = items[entry.key];
+                  //items.removeAt(index);
+                  return AlertDialog(
+                    title: const Text('Confirm Delete'),
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: <Widget>[
+                          Text('Delete task number $removedTaskTitle',
+                                                        style: TextStyle(fontWeight: FontWeight.bold ),
 
-ScaffoldMessenger.of(context).showSnackBar(
-  SnackBar(
-    content: Text(' task no. $removedItem deleted'),
-    action: SnackBarAction(
-      label: 'Undo',
-      onPressed: () {
-        setState(() => items.insert(index, removedItem));
-      },
-    ),
-  ),
-);
+                          ),
+                        ],
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Delete'),
+                        onPressed: () {
+                          setState(() {
+                            items.removeAt(removedItem);
+                          });
+
+                          Navigator.of(context).pop();
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(' task $removedTaskTitle deleted',
+                              style: TextStyle(fontWeight: FontWeight.bold ),
+                              ),
+                              action: SnackBarAction(
+                                label: 'Undo',
+                                onPressed: () {
+                                  setState(
+                                    () => items.insert(
+                                      removedItem,
+                                      removedTaskTitle,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          setState(
+                                    () => items.insert(
+                                      removedItem,
+                                      removedTaskTitle,
+                                    ),
+                                  );
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+
+        
             },
-          ),
 
-             TextButton(
-            child: const Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+            child: Card(
+              key: ValueKey(entry.value),
+              elevation: 4,
+              margin: EdgeInsets.all(8),
+              child: ListTile(
+                key: ValueKey(entry.value),
 
-
-
-                // setState(() {
-                //   items.remove(item);
-                // }
-                // );
-
-               // return true;
-              }
-              //return true;
-            },
-            key: ValueKey(index),
-
-            child: ListTile(
-              onTap: () {
-                print('clicked $index');
-              },
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Colors.blue, 
-
-                  width: 3,
-                ), // Define border color and width
-                borderRadius: BorderRadius.circular(10), // Add rounded corners
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.blue, width: 3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                leading: Icon(Icons.menu),
+                title: Text(entry.value),
               ),
-              leading: Icon(Icons.menu),
-              title: Text('Task $index'),
             ),
           );
         }).toList(),
+
         onReorder: (oldIndex, newIndex) {
           print('moved');
           setState(() {
             if (oldIndex < newIndex) {
               newIndex -= 1;
             }
-            final int item = items.removeAt(oldIndex);
-            items.insert(newIndex, item);
+        String taskTitle=   items[oldIndex];
+            items.removeAt(oldIndex);
+            items.insert(newIndex, taskTitle);
           });
         },
       ),
     );
   }
-}
-
-
-class TaskModel{
-  String taskTitle;
-
-  TaskModel(this.taskTitle);
 }
