@@ -1,5 +1,6 @@
 import 'package:challenge/first_challenge.dart';
 import 'package:challenge/second_challenge.dart';
+import 'package:challenge/third_challenge.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SecondChallenge(),
+      home: const ThirdChallenge(),
     );
   }
 }

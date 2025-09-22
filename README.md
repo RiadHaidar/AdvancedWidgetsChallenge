@@ -1,22 +1,22 @@
-# challenge
+# Challenge
 
-Basic flutter project with a couple of advanced widgets.
+Basic Flutter project with a couple of advanced widgets.
 ## Getting Started
 
 
-Class FirstChallenge
-    - This class contains the first challenge, its baisccaly reordarblelist with dismissible functionality.
-    we can reorder the list and delete any item by siwping it right or left.
+### Class FirstChallenge
+    - This class contains the first challenge, it's basically ReorderableList with dismissible functionality.
+    We can reorder the list and delete any item by swiping it right or left.
 
-    Each item of the reorderable list, should have a ValueKey, the ValueKey is based on the task title, after i converted the list of tasks to a map, so i can link things, based on key value pair.
-    The main reason for choosing ValueKey over other keys like ObjectKey or UniqueKey is that it will allow me to identify the item i need, and it preserve the state of the widget its attached to.
-    Now, the ValueKey is used in two places:
+    Each item of the reorderable list should have a ValueKey. The ValueKey is based on the task title, after I converted the list of tasks to a map, so I can link things based on key-value pairs.
+    The main reason for choosing ValueKey over other keys like ObjectKey or UniqueKey is that it allows me to identify the item I need, and it preserves the state of the widget it's attached to.
+    Now, the ValueKey is used in these places:
         1. In the ReorderableList widget as a Key for each item.
         2. As a key for the Map that holds all the tasks.
         3. In the Dismissible widget as a key for the item being dismissed.
         4. In the nested child of the Dismissible widget as a key for the child itself.
 
-    Since we have a coupld of nested widgets Starting from top to bottom:
+    Since we have a couple of nested widgets starting from top to bottom:
         1. ReorderableListView
         2. Dismissible
         3. Container
@@ -25,15 +25,16 @@ Class FirstChallenge
         6. Dialog
         7. SnackBar
 
-    I needed a way where i can track the whole chain of widgets, and identify the present state so i can take actions based on that, therefore, the ValueKey was the best option.
+    I needed a way where I can track the whole chain of widgets and identify the present state so I can take actions based on that; therefore, the ValueKey was the best option.
 
-    So for dimsising, im tracking the item being dismissed using the ValueKey, then i save the index(key) and the title (value) of the item being dismissed, then i remove it from the map, and rebuild the listview again, and finally i show a snackbar to confirm the deletion, also, undo the change, because i still have both task title and key (index in this case) saved.
+    So for dismissing, I'm tracking the item being dismissed using the ValueKey, then I save the index (key) and the title (value) of the item being dismissed, then I remove it from the map and rebuild the ListView again. Finally, I show a Snackbar to confirm the deletion, also allowing the user to undo the change because I still have both task title and key (index in this case) saved.
 
+- **First challenge Class**: [View Code](./lib/first_challenge.dart#L5-L123)
 
-    ## Demo Video
+## Demo Video
 
 <div align="center">
-  <img src="./materials/first_challenge.gif" width="350" alt="First Challenge Demo">
+  <img src="./materials/first_challenge.mp4" width="350" alt="First Challenge Demo">
   <br>
   <em>First Challenge - ReorderableList with Dismissible</em>
 </div>
@@ -42,22 +43,22 @@ Class FirstChallenge
 
 
 
-Class SecondChallenge
-    - This class challenge is based on using Draggable and DragTrget.
-    The goal is to drag the draggable widget into one of the targets, if it matches the target color, then it will be accepted and the target shape will change to the draggable color, otherwise it will be rejected, and if we hover the draggable on the drag target we will show a prview and we wont accept it.   
+### Class SecondChallenge
+    - This class challenge is based on using Draggable and DragTarget.
+    The goal is to drag the draggable widget into one of the targets. If it matches the target color, then it will be accepted and the target shape will change to the draggable color; otherwise, it will be rejected. If we hover the draggable over the drag target, we will show a preview but won't accept it.
 
     The class is based on two main widgets:
 
-    ## Key Components
+    #### Key Components
 
 - **DraggableCircle Widget**: [View code](./lib/second_challenge.dart#L80-L94) 
 
-- We pass there the initial data that we want to validate, and the color.
-- Feedback basically is the shape that should appear we are dragging, it appers one we start dragging.
-- ShapeWhenDragging is basically the shape that appears when we are dragging the widget.
-- Child is basically the initial shape.
+- We pass the initial data that we want to validate, and the color.
+- Feedback is the shape that should appear when we are dragging; it appears once we start dragging.
+- ShapeWhenDragging is the shape that appears when we are dragging the widget.
+- Child is the initial shape.
 
-- **DragTargetWidget** : [View Code](./lib/second_challenge.dart#L96-L187)
+- **DragTargetWidget**: [View Code](./lib/second_challenge.dart#L96-L187)
 
 - It takes color (to manage the colors in different conditions)
 - acceptedValue (the value which we are considering as true for the validation condition)
@@ -71,7 +72,54 @@ Now inside it we have 4 conditions checked in this order:
 4. If none of these conditions are met, we show the default shape.
 
 <div align="center">
-  <img src="./materials/second_challenge.gif" width="350" alt="Second Challenge Demo">
+  <img src="./materials/second_challenge.mp4" width="350" alt="Second Challenge Demo">
   <br>
   <em>Second Challenge - Drag and Drop</em>
 </div>
+
+
+
+
+
+
+
+### Class ThirdChallenge
+    - This class builds a simple animation loader of 3 dots using animation controller, tween and animation builder.
+    Animation builder has same values for beginning and end which controls the size of the widget at its beginning and end states.
+    Tween is used to control the opacity of the dot while animating between beginning and end states, also to control the delay between animations using Interval property of Curve.
+
+    - I used AnimatedBuilder to build the desired widget, which transitions from a small container with opacity to a bigger one without.
+
+
+
+## Demo Video For the Actual Challenge
+
+
+<div align="center">
+  <img src="./materials/third_challenge_actual.mp4" width="350" alt="Third Challenge Demo">
+  <br>
+  <em>Third Challenge - Loader</em>
+</div>
+
+
+
+
+
+[View Code](./lib/third_challenge.dart#L104-L193)
+
+### Class ThirdChallengeSimple
+
+    - Here I just wanted to implement the same animation using a simpler way, just to show there are different ways of achieving the same thing.
+    - I just used built-in animations, with AnimatedContainer, linked each container to a different bool value.
+    - In the init state, the bool values of the 3 containers update sequentially.
+
+## Demo Video For the Simple Version
+
+<div align="center">
+  <img src="./materials/third_challenge_simple.mp4" width="350" alt="Third Challenge Simple Demo">
+  <br>
+  <em>Third Challenge - Loader Simple</em>
+</div>
+
+
+
